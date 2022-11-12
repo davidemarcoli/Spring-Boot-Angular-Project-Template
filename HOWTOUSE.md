@@ -32,6 +32,7 @@ There are a few things you need to do before you can start developing your proje
 - [ ] Change the project name in the navbar in the `app.component.html` file
   - [ ] `frontend/src/app/app.component.html` (line 2)
 - [ ] Change the configuration in the `application.properties` file located at `backend/src/main/resources`
+- [ ] Change the docker image name in the `buildDockerfile.sh` file located at `scripts`
 - [ ] Run `mvn clean install` in the root directory of the project to verify that everything works
 
 **Now you're Ready!**
