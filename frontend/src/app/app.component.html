@@ -1,13 +1,9 @@
 <mat-toolbar *ngIf="authService.isLoggedIn()">
-  <span routerLink="/info-board" style="cursor: pointer">Info Board</span>
+  <span routerLink="/" style="cursor: pointer">Project Template</span>
   <span class="example-spacer"></span>
   <button mat-icon-button routerLink="post/create" matTooltip="Create Post" style="background-color: lightblue">
     <mat-icon>add</mat-icon>
   </button>
-<!--  <button mat-button [matMenuTriggerFor]="infoBoardMenu">Posts</button>-->
-<!--  <mat-menu #infoBoardMenu="matMenu">-->
-<!--    <button mat-menu-item routerLink="post/create">Add Post</button>-->
-<!--  </mat-menu>-->
   <div style="margin-left: 10px"></div>
   <button mat-button [matMenuTriggerFor]="categoryMenu" *ngIf="authService.getRoles().includes('ROLE_ADMIN')">Categories</button>
   <mat-menu #categoryMenu="matMenu">

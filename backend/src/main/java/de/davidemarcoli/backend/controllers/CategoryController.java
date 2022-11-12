@@ -23,7 +23,7 @@ public class CategoryController implements CrudController<Category, Integer> {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Category> create(@RequestBody Category category) {
 //        return ResponseEntity.ok(categoryService.save(category));
-        return ResponseEntity.ok(categoryService.saveWithTransaction(category));
+        return ResponseEntity.ok(categoryService.save(category));
     }
 
     @Override

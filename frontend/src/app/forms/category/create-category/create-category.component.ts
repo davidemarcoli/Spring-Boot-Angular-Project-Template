@@ -4,6 +4,7 @@ import {Category} from "../../../models/category";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AlertService} from "../../../services/alert/alert.service";
 import {Router} from "@angular/router";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-create-category',
@@ -35,9 +36,11 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    this.categoryService.createCategory(new Category(0, this.form.value.name, this.color)).toPromise()
+
+    const category$ = this.categoryService.createCategory(new Category(0, this.form.value.name, this.color));
+
+    lastValueFrom(category$)
       .then(value => {
-        console.log(value)
         this.alertService.success('Category created successfully');
         this.router.navigate(['/']);
       })

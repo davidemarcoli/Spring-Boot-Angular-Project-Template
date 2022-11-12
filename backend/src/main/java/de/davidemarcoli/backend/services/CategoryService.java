@@ -23,28 +23,6 @@ public class CategoryService implements CrudService<Category, Integer> {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    public Category saveWithTransaction(Category category) {
-
-        if (categoryRepository.findByName(category.getName()).isPresent()) {
-            throw new EntityAlreadyExistsException("Category " + category.getName() + " already exists");
-        } else if (categoryRepository.existsByColor(category.getColor())) {
-            throw new EntityAlreadyExistsException("Category with color " + category.getColor() + " already exists");
-        }
-
-//        entityManager.createNativeQuery("START TRANSACTION; INSERT INTO category (name, color) VALUES (?,?); COMMIT;")
-//                .setParameter(1, category.getName())
-//                .setParameter(2, category.getColor())
-//                .executeUpdate();
-
-        return categoryRepository.callInsertProcedure(category.getName(), category.getColor());
-
-        // get inserted category
-//        return categoryRepository.findByName(category.getName()).orElseThrow(EntityNotFoundException::new);
-    }
-
     @Override
     public Category save(Category category) {
         if (categoryRepository.findByName(category.getName()).isPresent()) {

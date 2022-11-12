@@ -1,7 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit($event)" class="center">
   <h1>Edit Category</h1>
 
-<!--  mat-select-->
   <mat-form-field appearance="fill">
     <mat-label>Category</mat-label>
     <mat-select formControlName="oldCategory">
@@ -23,6 +22,5 @@
 
   <app-category-pill [category]="getPreviewCategory()"></app-category-pill>
 
-  <!--  submit-->
   <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
 </form>

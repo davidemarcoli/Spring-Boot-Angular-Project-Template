@@ -29,6 +29,8 @@ There are a few things you need to do before you can start developing your proje
   - [ ] `frontend/angular.json` (line 68)
   - [ ] `frontend/angular.json` (line 71)
   - [ ] `frontend/angular.json` (line 79)
+- [ ] Change the project name in the navbar in the `app.component.html` file
+  - [ ] `frontend/src/app/app.component.html` (line 2)
 - [ ] Change the configuration in the `application.properties` file located at `backend/src/main/resources`
 - [ ] Run `mvn clean install` in the root directory of the project to verify that everything works
 
@@ -39,7 +41,22 @@ There are a few things you need to do before you can start developing your proje
 ### Database
 
 The backend uses a MySQL database. You can either use a local database or a remote database.
+
+#### Local Database
 If you want to use a local database, you need to install MySQL on your machine.
+
+With docker, you can easily start a MySQL database in seconds. Just run the following command:
+
+```bash
+docker run --name project-template-mysql -e MYSQL_ROOT_PASSWORD=my-password -e MYSQL_DATABASE=my-database -p 3308:3306 -d mysql:latest
+```
+
+If you don't have docker installed, you can download it [here](https://www.docker.com/products/docker-desktop).
+
+When you don't want to use docker, you can download MySQL [here](https://dev.mysql.com/downloads/mysql/).
+
+#### Remote Database
+
 If you want to use a remote database, you need to create a MySQL database on a remote server.
 
 ### Configuration
@@ -69,13 +86,10 @@ The following properties are used:
 - `jwt.header`: The JWT header. The default value is `Authorization`.
 - `jwt.prefix`: The JWT prefix. The default value is `Bearer `.
 
-[//]: #
-[//]: #
-[//]: #
-[//]: #
 ### Run
 
 You can run the backend with the following command:
+
 On Windows:
 
 ```
@@ -122,13 +136,22 @@ You can run the frontend with the following command:
 ng serve
 ```
 
-## Build
+### Build
 
 You can build the frontend with the following command:
 
 ```
 ng build
 ```
+
+### Included Libraries
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [CKEditor 5](https://ckeditor.com/ckeditor-5/)
+- [JWT Decode](https://www.npmjs.com/package/jwt-decode)
+- [Moment](https://momentjs.com/)
+- [ngx-pipes](https://www.npmjs.com/package/ngx-pipes)
+- [rxjs](https://rxjs.dev/)
 
 ## Build Whole Project
 

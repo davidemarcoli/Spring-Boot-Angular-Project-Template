@@ -23,8 +23,6 @@
       </tr>
     </table>
 
-<!--    <button class="btn btn-primary" (click)="editPost()">Edit</button>-->
-<!--    <button class="btn btn-danger" (click)="deletePost()">Delete</button>-->
     <button mat-raised-button color="primary" (click)="editPost()" *ngIf="canModify()">Edit</button>
     <button mat-raised-button color="warn" (click)="deletePost()" *ngIf="canModify()">Delete</button>
 

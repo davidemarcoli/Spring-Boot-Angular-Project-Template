@@ -11,6 +11,7 @@ import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../models/user";
 import {AuthService} from "../../../services/auth/auth.service";
+import {firstValueFrom, lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-edit-post',
@@ -28,18 +29,12 @@ export class EditPostComponent implements OnInit {
   categoryList: Category[] = [];
 
   constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
-    this.categoryService.getCategories().toPromise().then(value => {
+    const categories$ = this.categoryService.getCategories();
+    lastValueFrom(categories$).then(value => {
       this.categoryList = value || [];
-    })
+    });
+
     console.log(this.authService.getRoles())
-  }
-
-  onCategoryChange(event: any) {
-    console.log(event)
-
-    // this.form.patchValue({
-    //   categories: event
-    // })
   }
 
   ngOnInit(): void {
@@ -49,11 +44,10 @@ export class EditPostComponent implements OnInit {
       categories: new FormControl([], Validators.required)
     });
 
-    console.log(this.route.snapshot.queryParams['id']);
     let id = this.route.snapshot.queryParams['id'];
 
-    this.postService.getPostById(id).toPromise().then(value => {
-      console.log(value)
+    const post$ = this.postService.getPostById(id);
+    lastValueFrom(post$).then(value => {
 
       if (!value) {
         this.alertService.error('Post not found');
@@ -69,7 +63,6 @@ export class EditPostComponent implements OnInit {
         categories: value.categories
       })
       this.form.updateValueAndValidity();
-      console.log(this.form)
 
       if (!(this.authService.getRoles().includes('ROLE_MODERATOR') || this.oldPost.author.username === this.authService.getUsername())) {
         this.alertService.error('You are not allowed to edit this post');
@@ -101,10 +94,11 @@ export class EditPostComponent implements OnInit {
     this.oldPost.content = this.form.value.content;
     this.oldPost.categories = this.form.value.categories;
 
-    this.postService.updatePost(this.oldPost).toPromise().then(value => {
+    const post$ = this.postService.updatePost(this.oldPost);
+    lastValueFrom(post$).then(value => {
       console.log(value)
       this.alertService.success('Post saved successfully');
-      this.router.navigate(['/']);
+      this.router.navigateByUrl('home');
     })
       .catch(reason => {
         console.log(reason)

@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category/category.service";
 import {AlertService} from "../../../services/alert/alert.service";
-import {Router} from "@angular/router";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-delete-category',
@@ -17,8 +17,10 @@ export class DeleteCategoryComponent implements OnInit {
 
   categoryList: Category[] = [];
 
-  constructor(private categoryService: CategoryService, private alertService: AlertService, private router: Router) {
-    this.categoryService.getCategories().toPromise().then(value => {
+  constructor(private categoryService: CategoryService, private alertService: AlertService) {
+
+    const category$ = this.categoryService.getCategories();
+    lastValueFrom(category$).then(value => {
       this.categoryList = value || [];
     })
   }
@@ -39,11 +41,10 @@ export class DeleteCategoryComponent implements OnInit {
 
 
   onSubmit(event: any) {
-
-    this.categoryService.deleteCategory(this.form.value.categoryId).toPromise().then(value => {
+    const category$ = this.categoryService.deleteCategory(this.form.value.categoryId);
+    lastValueFrom(category$).then(value => {
       this.alertService.success("Category deleted successfully");
       location.reload();
-      // this.router.navigateByUrl('category/delete', {skipLocationChange: true})
     })
       .catch(reason => {
         this.alertService.error(reason.error.message);

@@ -5,7 +5,6 @@ import {HomeComponent} from "./home/home.component";
 import {AuthGuardService} from "./services/auth-guard/auth-guard.service";
 import {SignupComponent} from "./login/signup/signup.component";
 import {CreateCategoryComponent} from "./forms/category/create-category/create-category.component";
-import {ListCategoriesComponent} from "./forms/category/list-categories/list-categories.component";
 import {CreatePostComponent} from "./forms/post/create-post/create-post.component";
 import {ListPostsComponent} from "./forms/post/list-posts/list-posts.component";
 import {UpdateCategoryComponent} from "./forms/category/update-category/update-category.component";
@@ -28,10 +27,9 @@ const routes: Routes = [
       { path: 'create', component: CreateCategoryComponent },
       { path: 'edit', component: UpdateCategoryComponent },
       { path: 'delete', component: DeleteCategoryComponent },
-      { path: 'list', component: ListCategoriesComponent },
     ]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

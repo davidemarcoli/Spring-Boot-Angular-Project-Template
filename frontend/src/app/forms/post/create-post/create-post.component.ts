@@ -9,6 +9,7 @@ import {Post} from "../../../models/post";
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {Router} from "@angular/router";
+import {firstValueFrom, lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-create-port',
@@ -25,28 +26,17 @@ export class CreatePostComponent implements OnInit {
   categoryList: Category[] = [];
 
   constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private router: Router) {
-    this.categoryService.getCategories().toPromise().then(value => {
+    const categories$ = this.categoryService.getCategories();
+    lastValueFrom(categories$).then(value => {
       this.categoryList = value || [];
-    })
-
-    this.postService.getPosts().toPromise().then(value => {
-      console.log(value)
     });
-  }
-
-  onCategoryChange(event: any) {
-    console.log(event)
-
-    // this.form.patchValue({
-    //   categories: event
-    // })
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
-      content: new FormControl('', Validators.required),
-      categories: new FormControl([], Validators.required)
+      categories: new FormControl([], Validators.required),
+      content: new FormControl('', Validators.required)
     });
   }
 
@@ -72,15 +62,15 @@ export class CreatePostComponent implements OnInit {
       categories: this.categoryList.filter(value => this.form.value.categories.includes(value.id.toString()))
     } as Post;
 
-    this.postService.createPost(post).toPromise().then(value => {
-      console.log(value)
-      this.alertService.success('Post created successfully');
-      this.router.navigate(['/']);
-    })
-      .catch(reason => {
-        console.log(reason)
+    const post$ = this.postService.createPost(post);
+    lastValueFrom(post$).then(value => {
+        this.alertService.success('Post created successfully');
+        this.router.navigateByUrl('home');
+      }
+    ).catch(reason => {
         this.alertService.error(reason.error.message);
-      });
-  };
+      }
+    );
+  }
 
 }

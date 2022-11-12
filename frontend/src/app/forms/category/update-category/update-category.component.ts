@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category/category.service";
 import {AlertService} from "../../../services/alert/alert.service";
 import {Router} from "@angular/router";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-update-category',
@@ -23,7 +24,8 @@ export class UpdateCategoryComponent implements OnInit {
 
 
   constructor(private categoryService: CategoryService, private alertService: AlertService, private router: Router) {
-    this.categoryService.getCategories().toPromise().then(value => {
+    const category$ = this.categoryService.getCategories();
+    lastValueFrom(category$).then(value => {
       this.categoryList = value || [];
     })
   }
@@ -35,7 +37,6 @@ export class UpdateCategoryComponent implements OnInit {
     });
 
     this.form.get('oldCategory')?.valueChanges.subscribe(value => {
-      console.log(value);
       this.oldCategory = value;
       this.form.patchValue({
         name: value.name,
@@ -58,14 +59,13 @@ export class UpdateCategoryComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color)).toPromise()
+    const category$ = this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color));
+    lastValueFrom(category$)
       .then(value => {
-        console.log(value)
         this.alertService.success('Category edited successfully');
-        this.router.navigate(['/']);
+        this.router.navigateByUrl('/');
       })
       .catch(reason => {
-        console.log(reason)
         this.alertService.error(reason.error.message);
       });
   }
