@@ -124,9 +124,13 @@ mvn clean package
 The frontend uses Angular. The configuration is done in the `environment.ts` file.
 You can find this file in the `frontend/src/environments` folder.
 
+There are 2 environment files:
+- `environment.ts`: The development environment.
+- `environment.prod.ts`: The production environment.
+
 The following properties are used:
 
-- `apiUrl`: The URL of the backend. The default value is `http://localhost:8080`.
+- `apiUrl`: The URL of the api.
 
 ### Run
 
