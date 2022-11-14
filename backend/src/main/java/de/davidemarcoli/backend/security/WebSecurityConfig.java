@@ -1,7 +1,6 @@
 package de.davidemarcoli.backend.security;
 
 import de.davidemarcoli.backend.security.jwt.AuthEntryPointJwt;
-import de.davidemarcoli.backend.security.jwt.AuthTokenFilter;
 import de.davidemarcoli.backend.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
