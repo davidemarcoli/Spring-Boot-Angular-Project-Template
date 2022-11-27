@@ -9,8 +9,8 @@ import {Post} from "@models/post";
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../../models/user";
-import {AuthService} from "../../../services/auth/auth.service";
+import {User} from "@models/user";
+import {AuthService} from "@services/auth/auth.service";
 import {firstValueFrom, lastValueFrom} from "rxjs";
 
 @Component({
