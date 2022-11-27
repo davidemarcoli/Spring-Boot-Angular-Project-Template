@@ -1,4 +1,4 @@
-import {Component, OnInit, Sanitizer} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "@services/post/post.service";
 import {Post} from "@models/post";
@@ -42,7 +42,7 @@ export class ViewPostComponent implements OnInit {
     }
     if (confirm("Are you sure you want to delete this post?")) {
       console.log("Deleting post");
-      this.postService.deletePost(this.post.id).toPromise().then(value => {
+      this.postService.deletePost(this.post.id).toPromise().then(() => {
         this.router.navigate(['/']);
       });
     }

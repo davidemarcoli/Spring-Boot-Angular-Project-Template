@@ -40,9 +40,9 @@ export class DeleteCategoryComponent implements OnInit {
   }
 
 
-  onSubmit(event: any) {
+  onSubmit() {
     const category$ = this.categoryService.deleteCategory(this.form.value.categoryId);
-    lastValueFrom(category$).then(value => {
+    lastValueFrom(category$).then(() => {
       this.alertService.success("Category deleted successfully");
       location.reload();
     })

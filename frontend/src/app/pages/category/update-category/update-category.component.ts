@@ -58,10 +58,10 @@ export class UpdateCategoryComponent implements OnInit {
     return new Category(0, this.form.value.name, this.color);
   }
 
-  onSubmit(event: any) {
+  onSubmit() {
     const category$ = this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color));
     lastValueFrom(category$)
-      .then(value => {
+      .then(() => {
         this.alertService.success('Category edited successfully');
         this.router.navigateByUrl('/');
       })

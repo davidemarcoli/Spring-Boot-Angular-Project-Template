@@ -11,7 +11,7 @@ import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "@models/user";
 import {AuthService} from "@services/auth/auth.service";
-import {firstValueFrom, lastValueFrom} from "rxjs";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-edit-post',

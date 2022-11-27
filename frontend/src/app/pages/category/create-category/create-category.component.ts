@@ -35,12 +35,11 @@ export class CreateCategoryComponent implements OnInit {
     return new Category(0, this.form.value.name, this.color);
   }
 
-  onSubmit(event: any) {
-
+  onSubmit() {
     const category$ = this.categoryService.createCategory(new Category(0, this.form.value.name, this.color));
 
     lastValueFrom(category$)
-      .then(value => {
+      .then(() => {
         this.alertService.success('Category created successfully');
         this.router.navigate(['/']);
       })

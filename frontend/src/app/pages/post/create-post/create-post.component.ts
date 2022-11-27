@@ -52,8 +52,7 @@ export class CreatePostComponent implements OnInit {
     return this.form.get('categories');
   }
 
-  onSubmit(event: any) {
-    console.log(event)
+  onSubmit() {
     console.log(this.form)
 
     let post = {
@@ -63,7 +62,7 @@ export class CreatePostComponent implements OnInit {
     } as Post;
 
     const post$ = this.postService.createPost(post);
-    lastValueFrom(post$).then(value => {
+    lastValueFrom(post$).then(() => {
         this.alertService.success('Post created successfully');
         this.router.navigateByUrl('home');
       }
