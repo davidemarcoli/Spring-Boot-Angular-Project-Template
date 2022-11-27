@@ -1,11 +1,11 @@
 import {Component, OnInit, Sanitizer} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {PostService} from "../../../services/post/post.service";
-import {Post} from "../../../models/post";
+import {PostService} from "@services/post/post.service";
+import {Post} from "@models/post";
 import {DomSanitizer} from "@angular/platform-browser";
-import {User} from "../../../models/user";
+import {User} from "@models/user";
 import * as moment from "moment/moment";
-import {AuthService} from "../../../services/auth/auth.service";
+import {AuthService} from "@services/auth/auth.service";
 
 @Component({
   selector: 'app-view-post',

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../../services/post/post.service";
-import {Post} from "../../../models/post";
+import {PostService} from "@services/post/post.service";
+import {Post} from "@models/post";
 import {Router} from "@angular/router";
 import * as moment from "moment";
 // @ts-ignore

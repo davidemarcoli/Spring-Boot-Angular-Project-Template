@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category/category.service";
-import {AlertService} from "../../../services/alert/alert.service";
+import {Category} from "@models/category";
+import {CategoryService} from "@services/category/category.service";
+import {AlertService} from "@services/alert/alert.service";
 import {lastValueFrom} from "rxjs";
 
 @Component({

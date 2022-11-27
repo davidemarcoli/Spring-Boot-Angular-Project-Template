@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login/login.component";
-import {HomeComponent} from "./home/home.component";
-import {AuthGuardService} from "./services/auth-guard/auth-guard.service";
+import {AuthGuardService} from "@services/auth-guard/auth-guard.service";
 import {SignupComponent} from "./login/signup/signup.component";
 import {CreateCategoryComponent} from "./forms/category/create-category/create-category.component";
 import {CreatePostComponent} from "./forms/post/create-post/create-post.component";
@@ -11,7 +10,7 @@ import {UpdateCategoryComponent} from "./forms/category/update-category/update-c
 import {DeleteCategoryComponent} from "./forms/category/delete-category/delete-category.component";
 import {ViewPostComponent} from "./forms/post/view-post/view-post.component";
 import {EditPostComponent} from "./forms/post/edit-post/edit-post.component";
-import {AdminAuthGuardService} from "./services/admin-auth-guard/admin-auth-guard.service";
+import {AdminAuthGuardService} from "@services/admin-auth-guard/admin-auth-guard.service";
 
 const routes: Routes = [
   { path: 'home', component: ListPostsComponent, canActivate: [AuthGuardService] },

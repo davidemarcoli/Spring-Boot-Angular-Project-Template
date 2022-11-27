@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from './app-routing.module';
-import {HomeComponent} from './home/home.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./helper/jwt.interceptor";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -29,15 +28,15 @@ import {UpdateCategoryComponent} from './forms/category/update-category/update-c
 import {MatCardModule} from "@angular/material/card";
 import {ViewPostComponent} from './forms/post/view-post/view-post.component';
 import {ColorPickerModule} from "ngx-color-picker";
-import { CategoryPillComponent } from './components/category-pill/category-pill.component';
+import { CategoryPillComponent } from '@components/category-pill/category-pill.component';
 import { EditPostComponent } from './forms/post/edit-post/edit-post.component';
 import {NgPipesModule} from "ngx-pipes";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     SignupComponent,
     CreateCategoryComponent,
     CreatePostComponent,
@@ -67,7 +66,8 @@ import {NgPipesModule} from "ngx-pipes";
     CKEditorModule,
     MatCardModule,
     ColorPickerModule,
-    NgPipesModule
+    NgPipesModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

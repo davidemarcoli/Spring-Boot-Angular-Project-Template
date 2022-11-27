@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category/category.service";
-import {PostService} from "../../../services/post/post.service";
-import {AlertService} from "../../../services/alert/alert.service";
-import {Post} from "../../../models/post";
+import {Category} from "@models/category";
+import {CategoryService} from "@services/category/category.service";
+import {PostService} from "@services/post/post.service";
+import {AlertService} from "@services/alert/alert.service";
+import {Post} from "@models/post";
 
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
