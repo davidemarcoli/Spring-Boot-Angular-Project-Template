@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import * as moment from "moment";
 import {HttpClient} from "@angular/common/http";
 import jwt_decode from "jwt-decode";
-import {environment} from "../../../environments/environment";
+import {environment} from "~/environments/environment";
 
 @Injectable({
   providedIn: 'root'

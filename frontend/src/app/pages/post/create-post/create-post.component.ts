@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CategoryService} from "../../../services/category/category.service";
-import {AlertService} from "../../../services/alert/alert.service";
-import {Category} from "../../../models/category";
-import {PostService} from "../../../services/post/post.service";
-import {Post} from "../../../models/post";
+import {CategoryService} from "@services/category/category.service";
+import {AlertService} from "@services/alert/alert.service";
+import {Category} from "@models/category";
+import {PostService} from "@services/post/post.service";
+import {Post} from "@models/post";
 
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {Router} from "@angular/router";
-import {firstValueFrom, lastValueFrom} from "rxjs";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-create-port',
@@ -52,8 +52,7 @@ export class CreatePostComponent implements OnInit {
     return this.form.get('categories');
   }
 
-  onSubmit(event: any) {
-    console.log(event)
+  onSubmit() {
     console.log(this.form)
 
     let post = {
@@ -63,7 +62,7 @@ export class CreatePostComponent implements OnInit {
     } as Post;
 
     const post$ = this.postService.createPost(post);
-    lastValueFrom(post$).then(value => {
+    lastValueFrom(post$).then(() => {
         this.alertService.success('Post created successfully');
         this.router.navigateByUrl('home');
       }

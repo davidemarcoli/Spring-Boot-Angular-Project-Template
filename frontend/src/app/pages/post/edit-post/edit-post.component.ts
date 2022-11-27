@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category/category.service";
-import {PostService} from "../../../services/post/post.service";
-import {AlertService} from "../../../services/alert/alert.service";
-import {Post} from "../../../models/post";
+import {Category} from "@models/category";
+import {CategoryService} from "@services/category/category.service";
+import {PostService} from "@services/post/post.service";
+import {AlertService} from "@services/alert/alert.service";
+import {Post} from "@models/post";
 
 // @ts-ignore
 import * as CustomEditor from '@leo1305/ckeditor5-build-custom';
 import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../../models/user";
-import {AuthService} from "../../../services/auth/auth.service";
-import {firstValueFrom, lastValueFrom} from "rxjs";
+import {User} from "@models/user";
+import {AuthService} from "@services/auth/auth.service";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-edit-post',

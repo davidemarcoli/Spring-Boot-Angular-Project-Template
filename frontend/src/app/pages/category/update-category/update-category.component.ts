@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category/category.service";
-import {AlertService} from "../../../services/alert/alert.service";
+import {Category} from "@models/category";
+import {CategoryService} from "@services/category/category.service";
+import {AlertService} from "@services/alert/alert.service";
 import {Router} from "@angular/router";
 import {lastValueFrom} from "rxjs";
 
@@ -58,10 +58,10 @@ export class UpdateCategoryComponent implements OnInit {
     return new Category(0, this.form.value.name, this.color);
   }
 
-  onSubmit(event: any) {
+  onSubmit() {
     const category$ = this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color));
     lastValueFrom(category$)
-      .then(value => {
+      .then(() => {
         this.alertService.success('Category edited successfully');
         this.router.navigateByUrl('/');
       })
