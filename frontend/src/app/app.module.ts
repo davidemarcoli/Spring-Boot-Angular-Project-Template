@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from '@pages/auth/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./helper/jwt.interceptor";
@@ -67,7 +67,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatCardModule,
     ColorPickerModule,
     NgPipesModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

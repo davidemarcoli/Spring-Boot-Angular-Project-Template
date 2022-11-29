@@ -18,8 +18,6 @@ export class UpdateCategoryComponent implements OnInit {
 
   public oldCategory: Category | undefined;
 
-  color = '';
-
   categoryList: Category[] = [];
 
 
@@ -33,16 +31,16 @@ export class UpdateCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       oldCategory: new FormControl(undefined, Validators.required),
-      name: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
     });
 
     this.form.get('oldCategory')?.valueChanges.subscribe(value => {
       this.oldCategory = value;
       this.form.patchValue({
         name: value.name,
+        color: value.color,
       })
-      this.color = value.color;
-
     });
   }
 
@@ -54,12 +52,16 @@ export class UpdateCategoryComponent implements OnInit {
     return this.form.get('name');
   }
 
+  get color() {
+    return this.form.get('color');
+  }
+
   getPreviewCategory() {
-    return new Category(0, this.form.value.name, this.color);
+    return new Category(0, this.form.value.name,  this.form.value.color);
   }
 
   onSubmit() {
-    const category$ = this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.color));
+    const category$ = this.categoryService.updateCategory(new Category(this.oldCategory?.id, this.form.value.name, this.form.value.color));
     lastValueFrom(category$)
       .then(() => {
         this.alertService.success('Category edited successfully');
