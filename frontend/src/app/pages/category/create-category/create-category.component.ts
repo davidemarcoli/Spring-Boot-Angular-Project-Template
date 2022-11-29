@@ -16,27 +16,35 @@ export class CreateCategoryComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
-  color = '#f5f5f5';
-
   constructor(private categoryService: CategoryService, private alertService: AlertService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
     });
+
+    this.form.valueChanges.subscribe(value => {
+      console.log(value);
+    }
+    );
   }
 
   get name() {
     return this.form.get('name');
   }
 
+  get color() {
+    return this.form.get('color');
+  }
+
   getPreviewCategory() {
-    return new Category(0, this.form.value.name, this.color);
+    return new Category(0, this.form.value.name, this.form.value.color);
   }
 
   onSubmit() {
-    const category$ = this.categoryService.createCategory(new Category(0, this.form.value.name, this.color));
+    const category$ = this.categoryService.createCategory(new Category(0, this.form.value.name, this.form.value.color));
 
     lastValueFrom(category$)
       .then(() => {
