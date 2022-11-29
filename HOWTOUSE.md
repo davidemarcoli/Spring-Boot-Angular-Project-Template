@@ -3,7 +3,7 @@
 This project template is made with the intention of making it easy to start a new project.
 The Template includes the following features:
 
-- A multi-module project structure with a parent pom and 2 submodules (`frontend` and `backend)
+- A multi-module project structure with a parent pom and 2 submodules (`frontend` and `backend`)
 - Backend
   - Spring Boot
   - Spring Data JPA (with Hibernate)
