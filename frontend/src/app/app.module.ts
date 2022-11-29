@@ -30,8 +30,8 @@ import {ViewPostComponent} from '@pages/post/view-post/view-post.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import { CategoryPillComponent } from '@components/category-pill/category-pill.component';
 import { EditPostComponent } from '@pages/post/edit-post/edit-post.component';
-import {NgPipesModule} from "ngx-pipes";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {TruncatePipe} from "~/app/helper/truncate.pipe";
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ViewPostComponent,
     CategoryPillComponent,
     EditPostComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +67,6 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CKEditorModule,
     MatCardModule,
     ColorPickerModule,
-    NgPipesModule,
     MatTooltipModule,
     FormsModule
   ],
