@@ -25,7 +25,7 @@ import {ListPostsComponent} from '@pages/post/list-posts/list-posts.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {DeleteCategoryComponent} from '@pages/category/delete-category/delete-category.component';
 import {UpdateCategoryComponent} from '@pages/category/update-category/update-category.component';
-import {MatLegacyCardModule as MatCardModule} from "@angular/material/legacy-card";
+import {MatCardModule} from "@angular/material/card";
 import {ViewPostComponent} from '@pages/post/view-post/view-post.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import { CategoryPillComponent } from '@components/category-pill/category-pill.component';
